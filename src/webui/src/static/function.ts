@@ -175,6 +175,10 @@ function formatTimestamp(timestamp?: number, placeholder?: string = 'N/A'): stri
 
 function metricAccuracy(metric: MetricDataRecord): number {
     const data = JSON.parse(metric.data);
+    if (typeof data === 'object') {
+        return data.default;
+    }
+
     return typeof data === 'number' ? data : NaN;
 }
 
